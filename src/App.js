@@ -37,12 +37,12 @@ class App extends React.Component{
       <div className="container">
         <div className="row"></div>
         <div className="col-md-6">
-          <h3>EXPENDITURE</h3>
-        <AddExpenses deleteUser={this.deleteUser}users={this.state.users}/>
-        </div>
-        <div className="col-md-6">
           <h3>FORM</h3>
         <AddData addNewUser={this.addNewUser}/>
+        </div>
+        <div className="col-md-6">
+          <h3>EXPENDITURE</h3>
+        <AddExpenses deleteUser={this.deleteUser}users={this.state.users}/>
         </div>
       
       </div >
