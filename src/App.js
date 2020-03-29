@@ -1,26 +1,16 @@
 import React from 'react'
+import { connect } from "react-redux"
 import AddExpenses from "./AddExpenses"
 import AddData from "./AddData"
 import "bootstrap/dist/css/bootstrap.css"
 import "./App.css"
+import { addUser } from "./store/userAction.js"
 
 
 class App extends React.Component{
-  state = {
-    users:[
-      {Amount:"40",Description:"A black Shoe",id:1},
-      {Amount:"150",Description:"A Laptop",id:2},
-      {Amount:"40",Description:"A Red Dress",id:3}
-    
-    ]
-  }
-  addNewUser = (user)=>{
+  addNewUser = user=>{
     user.id = Math.random();
-    let users = [...this.state.users,user]
-    this.setState({
-      users:users
-
-    })
+    this.props.addUser(user)
 
   }
   deleteUser = (id) =>{
@@ -42,14 +32,23 @@ class App extends React.Component{
         </div>
         <div className="col-md-6">
           <h3>EXPENDITURE</h3>
-        <AddExpenses deleteUser={this.deleteUser}users={this.state.users}/>
+        <AddExpenses deleteUser={this.deleteUser}users={this.props.users}/>
         </div>
       
       </div >
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  users: state.users
+});
+
+const mapDispatchToProps = {
+  addUser
+
+}
   
 
 
-export default App;
+export default connect(mapStateToProps,mapDispatchToProps)(App);
